@@ -100,3 +100,53 @@
         - Next.js : 실전용
 
         * 강의에 예제 프로젝트인 12# 서비스 자체가 앱으로 사용자한테 전달되는 게 핵심가치, 웹은 보조적인 역할 수행, 당장 1~2년 안에 새로운 기능을 계속 추가하는 식의 서비스가 안될 것 같음. 그래서 위와 같은 결론 도출
+
+## 예제 프로젝트로 SSR Poc
+
+- step-by-step/poc-ssr-showcase 프로젝트
+
+#### Poc 계획
+
+- 무엇을 확인할 것인가? => 목표
+  > - Next.js SSR 라우트 구조 확인
+  > - 페이지별 Meta Taging => 검색엔진한테 적절하게 잘 설명해주는 것, openGraph
+  > - API Fetching
+  >   - 어플리케이션을 큰 덩어리로 구분 짓는 다면?
+  >     - 데이터, 데이터를 UI로 만든느 로직, 데이터를 가져오는 Fetching(데이터가 큰 경우, 여러 호출 요청 등 다양한 로직이 들어감)
+  >     - 위 3가지 항목 중 가장 중요한 Fetching, CSR은 무조건 클라이언트에서 Fetching이니까 심플한 편, SSR은 상황에 따라 클라이언트에서 Fetching, 서버에서 Fetching 이렇게 두가지 상황 생길 수 있음.
+  > - Next.js 기능 목록 체크
+
+#### Poc 프로젝트 생성 후 위의 사항들 체크
+
+- Next.js 보일러 플레이트로 생성
+
+* 위의 목표 순서대로 라우트 구조부터 확인(강사님의 개인 취향이라고 함, 라우터부터 확인하면 전체를 파악한 느낌)
+
+  - 공식문서를 보면서 라우트 어떻게 제공하는 지 보고 우려사항 생각.
+  - 강사님의 Next.js SSR 라우트 구조 확인
+    > - File-system routing
+    > - Dynamic routing
+    > - Shallow routing
+    > - Routing & **Lifecyle**
+    - 공식 문서들을 쫙 보고 위와 같은 키워드들 도출, 라우팅에 너무 많은 기능들을 제공하는 것 같다는 동물적 불안감을 가짐. 특히 Lifecycle이라는 측면까지 엮이면 굉장히 복잡해질 수 있는 상황들이 발생하겠다. 생각한다.
+    * 위와 같은 걸 발견하고 더 리서치를 해봐야겠다고 생각한다. 위에서 말한대로 ssr은 서버, 클라이언트 둘다 fetching이 일어날 수 있는 데, react 렌더링이 반복적으로 계속 일어나서 성능 저하되는 현상들이 발생할 수 있음.
+    * 우리가 충분히 이해하지 못하고 위와 같은 일이 생길 가능성이 충분히 있어보임. 위와 같은 복잡도가 딱 보이니까. 그래서 **저런 키워드들을 보고 불안감을 느끼고 그런 부분에 더 시간을 투자해야겠구나 생각해야함.**
+    * 이런 것을 하려고 Poc, 프로토 타입을 하는 것이다. 문제점을 발견하고 해결책이 있는지 틀렸는 지 빨리 결론을 내리기 위해
+
+* 페이지별 Meta Taging
+  - next/head
+* API Fetching
+
+  - Server Side => Server Side fetching에는 어떤 것들이 있는 지 체크
+    - getServerSideProps
+    - getStaticProps
+  - Client side => Client side에는 어떤 것들이 있는 지
+  - API gateway => API gateway 역할도 할 수 있는 지
+
+* 위와 같은 과정 지름길 => 좋은 Boilerplate 찾아서 공식문서랑 같이 보면 좋다
+
+### npm start로 실행
+
+- 위와 같은 과정 거치면서 실제로 작성해서 확인할 항목 선택하고, 해당 poc에 작성해본다.
+
+* step-by-step/poc-ssr-showcase 에선 product 버튼 하나 생성하고 'next/image'와 html 기본 img 태그 비교 테스트했음.
