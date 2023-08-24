@@ -255,3 +255,9 @@
   - 강의에선 graphql로 BFF 구성 => Rest API의 단점 규격이 없음. graphql은 schema로 규격만들 수 있음.
     - graphql 응답의 내용물을 클라이언트 사이드에서 결정할 수 있다.
   * BFF 구축하면 보안적으로도 더 안전함, BFF도 서버에 있으니까 서버에서 서버로 api 요청하는 거니까 더 private함. 그리고 cors 걱정은 client와 bff사이에서만 신경쓰면 됨.
+
+## 효율적인 레거시 리팩토링을 위한 문서 작성
+
+- 레거시를 가시화 하는 것이 중요하다.
+
+* 레거시 제안 문서 템플릿(https://www.notion.so/decd42ae86a0499a9f81eb3d1b34637e?v=089a5740fe19417ebf72569eaebcd101&p=3a0484bc957847a5a1810e16d92783ef&pm=s)
